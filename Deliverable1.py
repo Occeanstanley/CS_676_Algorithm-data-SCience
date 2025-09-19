@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 """
 Hybrid Credibility Scorer (Rules + Light ML with Adaptive CV Calibration)
 
