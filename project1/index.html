@@ -1,0 +1,26 @@
+<!doctype html><html><head>
+<meta charset="utf-8"/><title>Credibility Score</title>
+<style>
+body{font-family:system-ui;margin:2rem;max-width:800px}
+input,button{font-size:1rem;padding:.5rem}
+.stars{font-size:1.5rem;margin:.25rem 0}
+.explain{white-space:pre-wrap;color:#333;margin-top:.5rem}
+</style></head><body>
+<h1>Credibility Score Demo</h1>
+<input id="u" size="70" placeholder="https://who.int/news/item/...">
+<label>α</label><input id="a" type="number" min="0" max="1" step="0.05" value="0.5">
+<label><input id="f" type="checkbox"> fetch HTML</label>
+<button onclick="run()">Score</button>
+<div id="out"></div>
+<script>
+async function run(){
+  const url = encodeURIComponent(document.getElementById('u').value);
+  const a   = document.getElementById('a').value;
+  const f   = document.getElementById('f').checked;
+  const r = await fetch(`/score?url=${url}&alpha=${a}&fetch_html=${f}`);
+  const j = await r.json();
+  const stars = "★".repeat(j.stars) + "☆".repeat(5-j.stars);
+  document.getElementById('out').innerHTML =
+    `<div class="stars">${stars}</div><div><b>Score:</b> ${j.score}</div><div class="explain">${j.explanation}</div>`;
+}
+</script></body></html>
