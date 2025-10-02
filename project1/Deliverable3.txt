@@ -1,0 +1,12 @@
+Deliverable 3: Live Application Deployment
+
+This Space hosts the fully functional credibility scoring system developed for CS676 Project 3. It blends rule-based scoring with optional ML-based predictions, providing an interactive interface for users to evaluate the credibility of URLs.
+
+Deployed on Hugging Face Spaces:
+🔗 https://huggingface.co/spaces/occeanstanley9/credibility-scoring-space
+
+Features:
+- Gradio frontend with user input for URL, ML weight (alpha), and optional HTML fetching
+- Hybrid scoring logic combining institutional trust signals + ML predictions
+- Fully functional fallback when ML model is not available
+- Real-time star ratings and explanations
