@@ -1,0 +1,5 @@
+tinytroupe
+streamlit
+gradiо
+python-dotenv
+pydantic>=2
