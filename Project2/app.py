@@ -1,35 +1,45 @@
 import streamlit as st
 import openai
-from typing import List
 from tinytroupe.persona import Persona
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Load OpenAI key from secrets or env
+openai.api_key = st.secrets["OPENAI_API_KEY"] if "OPENAI_API_KEY" in st.secrets else None
 
+# Sidebar: Persona Info
+st.sidebar.title("👤 Persona Setup")
+name = st.sidebar.text_input("Name", "Aisha")
+role = st.sidebar.selectbox("Archetype / Role", [
+    "Budget-conscious professional",
+    "Tech-savvy teenager",
+    "Cautious parent"
+])
+budget_sensitive = st.sidebar.checkbox("💰 Budget sensitive", value=True)
+design_attentive = st.sidebar.checkbox("🎨 Design attentive", value=True)
+risk_aversion = st.sidebar.select_slider("⚠️ Risk Aversion", ["low", "medium", "high"], value="medium")
+
+# Main input for feature/variant
 st.title("🧠 TinyTroupe Persona Simulator")
-
-name = st.text_input("Name", "Aisha")
-role = st.selectbox("Archetype / Role", ["Budget-conscious professional", "Trend-seeking teen", "Tech-savvy shopper"])
-budget_sensitive = st.checkbox("Budget sensitive", value=True)
-design_attentive = st.checkbox("Design attentive", value=True)
-risk_aversion = st.selectbox("Risk aversion", ["low", "medium", "high"], index=1)
-feature = st.text_area("Feature / Variant Under Test", "16-month 0% APR; anti-reflection coating")
+feature_text = st.text_area("✏️ Describe the feature or product to test:", 
+    "A new anti-reflective glasses option for $79.99, includes 15-month breakage warranty.")
 
 if st.button("🧪 Run Simulation"):
-    persona = Persona(
-        name=name,
-        role=role,
-        budget_sensitive=budget_sensitive,
-        design_attentive=design_attentive,
-        risk_aversion=risk_aversion,
-    )
-    internal_thoughts = persona.think(feature)
-    recommendation = persona.talk(feature)
+    with st.spinner("Thinking..."):
 
-    st.subheader("🧩 THINK (Internal Reasoning)")
-    st.write(internal_thoughts)
+        persona = Persona(
+            name=name,
+            archetype=role,
+            features={
+                "budget_sensitive": budget_sensitive,
+                "design_attentive": design_attentive,
+                "risk_aversion": risk_aversion
+            }
+        )
 
-    st.subheader("💬 TALK (Final Recommendation)")
-    st.write(recommendation)
+        result = persona.evaluate(feature_text)
+
+        # Output Reasoning
+        st.subheader("🧩 THINK (Internal Reasoning)")
+        st.write(result["think"])
+
+        st.subheader("💬 TALK (Final Recommendation)")
+        st.write(result["talk"])
