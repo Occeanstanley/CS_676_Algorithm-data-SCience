@@ -1,5 +1,3 @@
+tinytroupe @ git+https://github.com/microsoft/TinyTroupe.git
+openai
 streamlit
-openai>=1
-python-dotenv
-pydantic>=2
-git+https://github.com/microsoft/TinyTroupe.git
