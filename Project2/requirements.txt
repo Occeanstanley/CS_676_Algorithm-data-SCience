@@ -1,3 +1,0 @@
-tinytroupe @ git+https://github.com/microsoft/TinyTroupe.git
-openai
-streamlit
