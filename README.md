@@ -2,7 +2,7 @@
 
 ### 📊 Project 1 – Deliverables 1 to 3  
 **Author:** Stanley Occean  
-**Course:** CS661 – Python Programming (Fall 2025)  
+**Course:** Algorithm Data Science (Fall 2025)  
 **Institution:** Pace University – Seidenberg School of CSIS  
 
 ---
@@ -55,18 +55,6 @@ This project was completed as **Deliverables 1–3**, covering:
 - Cleans & labels data (“Credible” → 1 / “Not Credible” → 0).  
 - Trains a **Logistic Regression** model to learn user consensus trends.  
 - Saves the updated model to `/artifacts/model.joblib`.
-
----
-
-## 📷 Screenshots (Deliverables 1 – 3)
-| Deliverable | Preview |
-|--------------|----------|
-| **1 – UI Prototype** | ![Deliverable 1](2025-11-09%20(18).png) |
-| **2 – Feedback Loop Added** | ![Deliverable 2](2025-11-09%20(19).png) |
-| **3 – Dashboard + Retraining Integration** | ![Deliverable 3](2025-11-09%20(20).png) |
-| **Final Live App** | ![Final App](2025-11-09%20(21).png) |
-| **Feedback Analytics** | ![Analytics](2025-11-09%20(22).png) |
-| **Retraining Logs** | ![Retraining](2025-11-09%20(23).png) |
 
 ---
 
